@@ -12,9 +12,10 @@ Config { font = "-*-Fixed-Bold-R-Normal-*-13-*-*-*-*-*-*-*"
                         , Run Swap [] 10
                         , Run Com "uname" ["-s","-r"] "" 36000
                         , Run Date "%a %b %_d %Y %H:%M:%S" "date" 10
+                        , Run Kbd [("ru", "RU"), ("us", "US")]
                         , Run StdinReader
                         ]
         , sepChar = "%"
         , alignSep = "}{"
-        , template = "%StdinReader% | %cpu% | %memory% * %swap% | %eth0% - %eth1% }{<fc=#ee9a00>%date%</fc> | %uname% | %CYVR% "
+        , template = "%StdinReader% | %cpu% | %memory% * %swap% | %eth0% - %eth1% }{%kbd% | <fc=#ee9a00>%date%</fc> | %uname% | %CYVR% "
         }

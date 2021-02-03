@@ -270,7 +270,7 @@ myStartupHook = do
 -- Run xmonad with the settings you specify. No need to modify this.
 --
 main = do
-  xmproc <- spawnPipe "/home/greg/.nix-profile/bin/xmobar /home/greg/env/xmobar.hs"
+  xmproc <- spawnPipe "xmobar /home/greg/env/xmobar.hs"
   xmonad $ defaults
     { manageHook         = manageDocks <+> manageHook defaultConfig
     , layoutHook         = avoidStruts  $ layoutHook defaultConfig
