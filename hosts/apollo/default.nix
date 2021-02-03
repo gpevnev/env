@@ -131,11 +131,11 @@
       xmonad.enable = true;
       xmonad.enableContribAndExtras = true;
     };
-  services.xserver.displayManager.defaultSession = "none+xmonad";
   programs.slock.enable = true;
   # Enable the KDE Desktop Environment.
-  services.xserver.displayManager.sddm.enable = true;
-  # services.xserver.desktopManager.plasma5.enable = true;
+  services.xserver.displayManager.defaultSession = "none+xmonad";
+  services.xserver.displayManager.lightdm.enable = true;
+  services.accounts-daemon.enable = true;
 
   programs.gnupg.agent = { 
     enable = true;

@@ -146,7 +146,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- Run xmessage with a summary of the default keybindings (useful for beginners)
     , ((modm .|. shiftMask, xK_slash ), spawn ("echo \"" ++ help ++ "\" | xmessage -file -"))
     , ((modm, xK_b), sendMessage ToggleStruts)
-    , ((modm .|. shiftMask, xK_l), spawn "slock")
+    , ((modm .|. shiftMask, xK_l), spawn "dm-tool lock")
     ]
     ++
 
@@ -262,7 +262,7 @@ myLogHook = pure ()
 -- By default, do nothing.
 myStartupHook = do 
   setWMName "LG3D"
-  spawnOnce "nitrogen --restore &"
+  spawnOnce "nitrogen --restore"
 
 ------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.
