@@ -33,7 +33,6 @@ in rec {
     nodejs
     spectacle
     # ngrok
-    dmenu
     tdesktop
     # Doom Emacs dependencies
     ripgrep
@@ -46,7 +45,6 @@ in rec {
     python37Packages.sqlparse
     stylish-haskell
 
-    dmenu
     xmobar
     nitrogen
   ];
@@ -222,6 +220,12 @@ in rec {
         white   = ''#ebdbb2'';
       };
     };
+  };
+
+  programs.rofi = {
+    enable = true;
+    borderWidth = 1;
+    theme = "gruvbox-dark-soft";
   };
 
   programs.emacs = {

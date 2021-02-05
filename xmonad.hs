@@ -7,15 +7,17 @@
 -- Normally, you'd only override those defaults you care about.
 --
 
-import XMonad
+import System.IO (hPutStrLn)
 import Data.Monoid
-import XMonad.Util.Run (spawnPipe)
 import System.Exit
+
+import XMonad
+import XMonad.Util.Run (spawnPipe)
 import XMonad.Util.SpawnOnce (spawnOnce)
 import XMonad.Hooks.SetWMName (setWMName)
 import XMonad.Hooks.DynamicLog (PP (..), dynamicLogWithPP, xmobarColor, shorten, wrap, pad, xmobarPP)
 import XMonad.Hooks.ManageDocks (manageDocks, avoidStruts, docksEventHook, ToggleStruts (..))
-import System.IO (hPutStrLn)
+import XMonad.Actions.SpawnOn (spawnOn)
 
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
@@ -77,8 +79,8 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- launch a terminal
     [ ((modm .|. shiftMask, xK_Return), spawn "alacritty")
 
-    -- launch dmenu
-    , ((modm,               xK_p     ), spawn "dmenu_run")
+    -- launch rofi
+    , ((modm,               xK_p     ), spawn "rofi -show run")
 
     -- launch gmrun
     , ((modm .|. shiftMask, xK_p     ), spawn "gmrun")
