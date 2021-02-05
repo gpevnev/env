@@ -159,6 +159,8 @@ in rec {
       airline
       vim-addon-nix
       vim-tmux-navigator
+      emmet-vim
+      coc-emmet
     ];
     withNodeJs = true; 
     extraConfig = ''
