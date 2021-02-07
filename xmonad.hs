@@ -18,6 +18,8 @@ import XMonad.Hooks.SetWMName (setWMName)
 import XMonad.Hooks.DynamicLog (PP (..), dynamicLogWithPP, xmobarColor, shorten, wrap, pad, xmobarPP)
 import XMonad.Hooks.ManageDocks (manageDocks, avoidStruts, docksEventHook, ToggleStruts (..))
 import XMonad.Actions.SpawnOn (spawnOn)
+import XMonad.Layout.NoBorders (smartBorders)
+import XMonad.Layout.Fullscreen (fullscreenSupport)
 
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
@@ -37,7 +39,7 @@ myClickJustFocuses = False
 
 -- Width of the window border in pixels.
 --
-myBorderWidth   = 1
+myBorderWidth   = 3
 
 -- modMask lets you specify which modkey you want to use. The default
 -- is mod1Mask ("left alt").  You may also consider using mod3Mask
@@ -137,7 +139,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- Use this binding with avoidStruts from Hooks.ManageDocks.
     -- See also the statusBar function from Hooks.DynamicLog.
     --
-    -- , ((modm              , xK_b     ), sendMessage ToggleStruts)
+    , ((modm              , xK_b     ), sendMessage ToggleStruts)
 
     -- Quit xmonad
     , ((modm .|. shiftMask, xK_q     ), io (exitWith ExitSuccess))
@@ -147,7 +149,6 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
     -- Run xmessage with a summary of the default keybindings (useful for beginners)
     , ((modm .|. shiftMask, xK_slash ), spawn ("echo \"" ++ help ++ "\" | xmessage -file -"))
-    , ((modm, xK_b), sendMessage ToggleStruts)
     , ((modm .|. shiftMask, xK_l), spawn "dm-tool lock")
     ]
     ++
@@ -273,9 +274,10 @@ myStartupHook = do
 --
 main = do
   xmproc <- spawnPipe "xmobar /home/greg/env/xmobar.hs"
-  xmonad $ defaults
+  xmonad $
+    fullscreenSupport $ defaults
     { manageHook         = manageDocks <+> manageHook defaultConfig
-    , layoutHook         = avoidStruts  $ layoutHook defaultConfig
+    , layoutHook         = smartBorders (avoidStruts $ layoutHook defaultConfig)
     , logHook            = dynamicLogWithPP xmobarPP
         { ppOutput          = hPutStrLn xmproc
         , ppTitle           = xmobarColor "darkgreen"  "" . shorten 20
