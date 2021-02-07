@@ -124,6 +124,8 @@ in rec {
     enable = true;
   };
 
+  programs.go.enable = true;
+
   programs.tmux = {
     enable = true;
     baseIndex = 1;
@@ -159,6 +161,8 @@ in rec {
       vim-tmux-navigator
       emmet-vim
       coc-emmet
+      vim-go
+      vim-surround
     ];
     withNodeJs = true; 
     extraConfig = ''
