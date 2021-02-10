@@ -122,6 +122,22 @@ in rec {
 
   programs.git = {
     enable = true;
+    delta.enable = true;
+    ignores = [ "*~" ];
+    extraConfig = {
+      core.askPass = "";
+    };
+    userName = "Grigory Pevnev";
+    userEmail = "gpevnev@gmail.com";
+    signing = {
+      key = "0x1382E1A5D976E382";
+      signByDefault = true;
+    };
+    includes = [
+      { condition = "gitdir:~/serokell/";
+        contents = { user.email = "grigory.pevnev@serokell.io"; };
+      }
+    ];
   };
 
   programs.go.enable = true;
