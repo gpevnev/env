@@ -34,6 +34,8 @@
     };
   };
 
+  boot.supportedFilesystems = [ "ntfs" ];
+
   # Use the rEFInd EFI boot loader.
  # boot.loader.refind = {
  #   enable = true;
