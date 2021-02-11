@@ -69,6 +69,11 @@ in rec {
     };
   };
 
+  programs.direnv = {
+    enable = true;
+    enableNixDirenvIntegration = true;
+  };
+
   programs.gpg = {
     enable = true;
   };
@@ -123,7 +128,7 @@ in rec {
   programs.git = {
     enable = true;
     delta.enable = true;
-    ignores = [ "*~" ];
+    ignores = [ "*~" "result*" ".direnv" ".envrc"];
     extraConfig = {
       core.askPass = "";
     };
@@ -250,7 +255,7 @@ in rec {
 
   programs.emacs = {
     enable = true;
-    extraPackages = epkgs: [ epkgs.emacs-libvterm ];
+    extraPackages = epkgs: [ epkgs.vterm ];
   };
 
   xsession = {
