@@ -127,8 +127,6 @@
   services.xserver.videoDrivers = [ "amdgpu" ];
   services.xserver.xkbOptions = "grp:caps_toggle,eurosign:e";
 
-  services.picom.enable = true;
-
   services.xserver.windowManager = {
       xmonad.enable = true;
       xmonad.enableContribAndExtras = true;

@@ -267,6 +267,12 @@ in rec {
     };
   };
 
+  services.picom = {
+    enable = true;
+    fade = true;
+    fadeDelta = 5;
+  };
+
   programs.chromium.enable = true;
   programs.firefox.enable = true;
 }
